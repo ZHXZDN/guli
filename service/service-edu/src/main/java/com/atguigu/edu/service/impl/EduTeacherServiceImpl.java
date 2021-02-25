@@ -4,7 +4,6 @@ import com.atguigu.edu.dto.EduTeacherPageReqDTO;
 import com.atguigu.edu.entity.EduTeacher;
 import com.atguigu.edu.mapper.EduTeacherMapper;
 import com.atguigu.edu.service.EduTeacherService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,7 +28,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         // 分页页码,每页记录数
         Page<EduTeacher> page = new Page<>(reqDTO.getPage(), reqDTO.getSize());
         QueryWrapper wrapper = new QueryWrapper<EduTeacher>();
-        if (StringUtils.isNotEmpty(reqDTO.getName())) {
+        if (StringUtils.isNotBlank(reqDTO.getName())) {
             wrapper.like("name", reqDTO.getName());
         }
         if (reqDTO.getLevel() != null) {
